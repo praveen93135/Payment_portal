@@ -18,10 +18,10 @@ This project is also a learning project for understanding how web applications a
 
 ## Planned Stack
 
-- Frontend: React
+- Frontend: React with Vite
 - Backend: Node.js with Express
 - Database: PostgreSQL
-- Payments: Razorpay first, Stripe later if international payments are needed
+- Payments: Stripe Checkout
 - Authentication: JWT for the first version
 
 ## Folder Structure
@@ -44,23 +44,23 @@ docs/
 
 ```txt
 User clicks Pay
--> Frontend asks backend to create a payment order
--> Backend creates the order with the payment provider
--> User completes payment through the provider
--> Provider sends callback or webhook
--> Backend verifies the payment
+-> Frontend asks backend to create a Stripe Checkout Session
+-> Backend creates the Checkout Session with Stripe
+-> User completes payment on Stripe's hosted checkout page
+-> Stripe sends a webhook to the backend
+-> Backend verifies the webhook signature
 -> Backend updates payment status in the database
 -> User sees success or failure result
 ```
 
 ## Build Order
 
-1. Write project documentation
-2. Set up backend server
-3. Create database schema
-4. Add user authentication
-5. Add payment order creation
-6. Add payment verification
-7. Build frontend pages
-8. Connect frontend to backend
-9. Test payment success, failure, and duplicate callback cases
+1. Write project documentation - done
+2. Set up backend server - done
+3. Create database schema - done
+4. Add user authentication - done
+5. Add Stripe Checkout Session creation - done
+6. Add webhook verification - done
+7. Build frontend pages - done
+8. Connect frontend to backend - done
+9. Test payment success, failure, and duplicate webhook cases - next

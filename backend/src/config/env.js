@@ -11,8 +11,9 @@ if (!Number.isInteger(port) || port < 1 || port > 65535) {
 export const env = {
   nodeEnv: process.env.NODE_ENV || "development",
   port,
-  razorpayKeyId: process.env.RAZORPAY_KEY_ID,
-  razorpayKeySecret: process.env.RAZORPAY_KEY_SECRET,
+  frontendUrl: process.env.FRONTEND_URL || "http://localhost:5173",
+  stripeSecretKey: process.env.STRIPE_SECRET_KEY,
+  stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
   jwtSecret: process.env.JWT_SECRET,
   databaseUrl: process.env.DATABASE_URL
 };

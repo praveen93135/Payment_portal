@@ -20,9 +20,11 @@ CREATE TABLE payments (
   currency CHAR(3) NOT NULL DEFAULT 'INR',
   status VARCHAR(20) NOT NULL DEFAULT 'created'
     CHECK (status IN ('created', 'pending', 'paid', 'failed', 'refunded')),
-  provider VARCHAR(30) NOT NULL DEFAULT 'razorpay',
+  provider VARCHAR(30) NOT NULL DEFAULT 'stripe',
   provider_order_id VARCHAR(255),
   provider_payment_id VARCHAR(255),
+  stripe_checkout_session_id VARCHAR(255),
+  stripe_payment_intent_id VARCHAR(255),
   receipt_id VARCHAR(255) NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -37,6 +39,14 @@ CREATE INDEX payments_user_created_idx
 
 CREATE INDEX payments_status_idx
   ON payments (status);
+
+CREATE UNIQUE INDEX payments_stripe_checkout_session_unique
+  ON payments (stripe_checkout_session_id)
+  WHERE stripe_checkout_session_id IS NOT NULL;
+
+CREATE UNIQUE INDEX payments_stripe_payment_intent_unique
+  ON payments (stripe_payment_intent_id)
+  WHERE stripe_payment_intent_id IS NOT NULL;
 
 CREATE TABLE webhook_events (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
