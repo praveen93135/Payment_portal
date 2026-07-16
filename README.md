@@ -1,7 +1,5 @@
 # Payment Portal
 
-This is my first full-stack learning project for web development.
-
 The app has a Node/Express backend, PostgreSQL database, React frontend, JWT authentication, and Stripe Checkout payments.
 
 ## What It Does
